@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Two files define the build-process of this package:
+#
+# configure.ac and Makefile.am
+
+.PHONY: clean
+
+# Create build system.
+all: .build.bstamp
+.build.bstamp: .trialdiv.bstamp
+	mkdir -p m4
+	autoheader
+	aclocal
+	autoconf
+	libtoolize --force --copy
+	automake --add-missing --force-missing --gnu --copy
+	@touch .build.bstamp
+
+# Generate code for trial divisions in primality testing.
+.trialdiv.bstamp:
+	python gen_trialdiv.py 32 > trialdiv_32.c
+	python gen_trialdiv.py 64 > trialdiv_64.c
+	python gen_trialdiv.py -safe 32 > trialdiv_safe_32.c
+	python gen_trialdiv.py -safe 64 > trialdiv_safe_64.c
+	@touch .trialdiv.bstamp
+
+# Delete build system. This is meant to work no matter if the
+# repository has ended up in an unusual state.
+clean:
+	-$(MAKE) clean
+	@find . -name "*~" -delete
+	@rm -rf extract_GMP_CFLAGS trialdiv_??.c trialdiv_safe_??.c .trialdiv.bstamp .deps aclocal.m4 autom4te.cache config.guess config.h config.h.in config.log config.status config.sub configure depcomp install-sh libtool ltmain.sh m4 Makefile.in Makefile missing stamp-h1 INSTALL gmpmee-*.tar.gz *.bstamp .*.bstamp compile
+
+dist: .build.bstamp
+	./configure
+	$(MAKE) dist
+
+api: .build.bstamp
+	./configure
+	$(MAKE) api
