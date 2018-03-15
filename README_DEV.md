@@ -8,9 +8,11 @@ distribution you can use
         make -f Makefile.build
 
 to run the necessary libtool, autoconf, etc routines and copy a few
-additional m4 scripts to the right place to put the directory in a
+additional M4 scripts to the right place to put the directory in a
 similar state to that of a distribution directory. Then you can run
-the usual ./configure; make; sudo make install.
+the usual
+
+        ./configure; make; sudo make install
 
 If the state of the directory is messed up, then you can run
 
@@ -18,19 +20,21 @@ If the state of the directory is messed up, then you can run
 
 to do a brutal cleanup of everything. Yes, there are various clean
 commands in Makefile, but this seems more robust and convenient when
-developing. After this command "git status" should not list any magic
+developing. After this command `git status` should not list any magic
 files that you did not write. Finally, you can use
 
         make -f Makefile.build dist
 
-to build a distribution tar.gz-ball in a single command. This merely
-sets up things and then runs the usual "make dist".
+to build a distribution archive `gmpmee-<version>.tar.gz` in a single
+command. This merely sets up things and then runs the usual
+
+        make dist
 
 ## Test Coverage Analysis
 
-If lcov is installed, then you can do a coverage analysis of the tests
-by
+If `lcov` is installed, then you can do a coverage analysis of the
+tests by running
 
        make coverage
 
-The results ends up in coverage/html.
+and the results end up in `coverage/html`.
