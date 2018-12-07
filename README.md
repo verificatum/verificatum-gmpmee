@@ -45,6 +45,9 @@ header file `gmpmee.h` in the standard locations. See `INSTALL` for
 details on other ways to invoke `./configure`, e.g., to use a
 user-local installation.
 
+You may need to run `sudo /sbin/ldconfig` on some platforms which have
+flawed implementations of the cache that stores locations of
+libraries.
 
 ## Usage
 
@@ -61,7 +64,7 @@ some environment variables.
 ## API Documentation
 
 You may use
- 
+
         make api
 
 to build also some documentation using Doxygen (this assumes you have
