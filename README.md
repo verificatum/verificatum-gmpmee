@@ -19,8 +19,8 @@ For a detailed account of such algorithms, a good source is [Handbook
 of Applied Cryptography](http://www.cacr.math.uwaterloo.ca/hac),
 *Menezes, Oorshot, and Vanstone*, which is available for free.
 
-The following assumes that you are using a release. Developers should
-also read `README_DEV.md`.
+The following assumes that you are using a distribution. Developers
+should also read `README_DEV.md`.
 
 
 ## Building
