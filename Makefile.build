@@ -30,7 +30,7 @@ all: .build.bstamp
 clean:
 	-$(MAKE) clean
 	@find . -name "*~" -delete
-	@rm -rf extract_GMP_CFLAGS trialdiv_??.c trialdiv_safe_??.c .trialdiv.bstamp .deps aclocal.m4 autom4te.cache config.guess config.h config.h.in config.log config.status config.sub configure depcomp install-sh libtool ltmain.sh m4 Makefile.in Makefile missing stamp-h1 INSTALL gmpmee-*.tar.gz *.bstamp .*.bstamp compile
+	@rm -rf extract_GMP_CFLAGS trialdiv_??.c trialdiv_safe_??.c .trialdiv.bstamp .deps aclocal.m4 autom4te.cache config.guess config.h config.h.in config.log config.status config.sub configure depcomp install-sh libtool ltmain.sh m4 Makefile.in Makefile missing stamp-h1 INSTALL verificatum-gmpmee-*.tar.gz *.bstamp .*.bstamp compile
 
 dist: .build.bstamp
 	./configure
