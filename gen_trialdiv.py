@@ -77,29 +77,29 @@ def print_code(wordsize, safe):
     if safe:
         bound = 2 * bound + 1
     
-    print "/* LCOV_EXCL_START */"
-    print "if (mpz_cmp_ui(n, %d) <= 0)" % bound
-    print "  {"
-    print "    goto trialscompleted;"
-    print "  }"
+    print("/* LCOV_EXCL_START */")
+    print("if (mpz_cmp_ui(n, %d) <= 0)" % bound)
+    print("  {")
+    print("    goto trialscompleted;")
+    print("  }")
     for part in parts:
-        print ""
-        print check("n", part)
+        print("")
+        print(check("n", part))
         if safe:
-            print check("m", part)
+            print(check("m", part))
 
-    print "trialscompleted:;"
-    print "/* LCOV_EXCL_STOP */"
+    print("trialscompleted:;")
+    print("/* LCOV_EXCL_STOP */")
 
 
 def usage():
-    print "%s [-safe] <bytes in long ctype>" % sys.argv[0]
+    print("%s [-safe] <bytes in long ctype>" % sys.argv[0])
 
 if len(sys.argv) < 2:
     usage()
 else:
     if sys.argv[1] == "-safe":
-        if sys.argv < 3:
+        if len(sys.argv) < 3:
             usage()
         else:
             print_code(int(sys.argv[2]), True)
