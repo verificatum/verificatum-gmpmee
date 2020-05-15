@@ -6,6 +6,9 @@
 
 .PHONY: clean
 
+# Avoid issues with the poor handling of versioning of Python.
+PYTHON := $(shell python3 --version > /dev/null 2>&1 && echo python3 || echo python)
+
 # Create build system.
 all: .build.bstamp
 .build.bstamp: .trialdiv.bstamp
@@ -19,10 +22,10 @@ all: .build.bstamp
 
 # Generate code for trial divisions in primality testing.
 .trialdiv.bstamp:
-	python gen_trialdiv.py 32 > trialdiv_32.c
-	python gen_trialdiv.py 64 > trialdiv_64.c
-	python gen_trialdiv.py -safe 32 > trialdiv_safe_32.c
-	python gen_trialdiv.py -safe 64 > trialdiv_safe_64.c
+	$(PYTHON) gen_trialdiv.py 32 > trialdiv_32.c
+	$(PYTHON) gen_trialdiv.py 64 > trialdiv_64.c
+	$(PYTHON) gen_trialdiv.py -safe 32 > trialdiv_safe_32.c
+	$(PYTHON) gen_trialdiv.py -safe 64 > trialdiv_safe_64.c
 	@touch .trialdiv.bstamp
 
 # Delete build system. This is meant to work no matter if the
