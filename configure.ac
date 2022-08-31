@@ -16,10 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with GMPMEE. If not, see <http://www.gnu.org/licenses/>.
 
-AC_PREREQ([2.63])
-AC_INIT([verificatum-gmpmee],
-	[m4_esyscmd([m4 .version.m4])],
-	[info@verificatum.com])
+AC_PREREQ([2.71])
+AC_INIT([verificatum-gmpmee],[m4_esyscmd([m4 .version.m4])],[info@verificatum.com])
 AC_LANG_PUSH([C])
 AM_INIT_AUTOMAKE([foreign tar-ustar -Wall -Werror -Wno-portability])
 AC_CONFIG_SRCDIR([spowm_init.c])
@@ -42,7 +40,7 @@ fi
 AC_PROG_CC
 
 # We are building a library.
-AC_PROG_LIBTOOL
+LT_INIT
 
 # Checks for libraries.
 AC_CHECK_LIB(gmp, __gmpz_init, ,

@@ -51,11 +51,22 @@ gmpmee_millerrabin_safe_reps_rs(gmp_randstate_t rstate,
         mpz_set_ui(nbase, 2);
       }
 
+    /* FIXME: GCC + libtool is currently broken. A fixed-size array
+       within a struct is valid C code and sizeof() should determine
+       the correct size of the resulting struct, including any
+       padding, but without disabling this libtool gives a warning. It
+       would still be better to rewrite the code to avoid the buggy
+       error. This is however quite difficult to do in a backwards
+       compatible way. */
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-overflow"
     if (gmpmee_millerrabin_once(state->nstate, nbase) == 0)
       {
 	res = 0;
 	break;
       }
+#pragma GCC diagnostic pop
 
     /* Random base in [2,m-2] */
     mpz_urandomm(mbase, rstate, mn_minus_1);
@@ -64,11 +75,14 @@ gmpmee_millerrabin_safe_reps_rs(gmp_randstate_t rstate,
         mpz_set_ui(mbase, 2);
       }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-overflow"
     if (gmpmee_millerrabin_once(state->mstate, mbase) == 0)
       {
 	res = 0;
 	break;
       }
+#pragma GCC diagnostic pop
   }
 
   mpz_clear(nn_minus_1);
