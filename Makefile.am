@@ -67,9 +67,9 @@ dist_bin_SCRIPTS = $(BINDIR)/gmpmee-info
 
 dist_noinst_DATA = extract_GMP_CFLAGS.c doxygen.cfg trialdiv_32.c trialdiv_64.c trialdiv_safe_32.c trialdiv_safe_64.c .version.m4 gmpmee-info.src
 
-all-local: .check_info.stamp
+all-local: check_info.stamp
 
-.check_info.stamp: gmpmee
+check_info.stamp: gmpmee
 	@echo ""
 	@echo "================================================================"
 	@echo ""
@@ -81,7 +81,7 @@ all-local: .check_info.stamp
 	@echo ""
 	@echo "================================================================"
 	@echo ""
-	@touch .check_info.stamp
+	@touch check_info.stamp
 
 install-data-hook:
 	@echo ""
@@ -120,4 +120,4 @@ cleanapi:
 
 clean-local: cleanapi cleancoverage
 	find . -name "*~" -delete
-	rm -rf *.stamp .*.stamp scriptmacros.m4 $(BINDIR)
+	rm -rf *.stamp scriptmacros.m4 $(BINDIR)
