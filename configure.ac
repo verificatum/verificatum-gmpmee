@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with GMPMEE. If not, see <http://www.gnu.org/licenses/>.
 
-AC_PREREQ([2.71])
+AC_PREREQ([2.69])
 AC_INIT([verificatum-gmpmee],[m4_esyscmd([m4 .version.m4])],[info@verificatum.com])
 AC_LANG_PUSH([C])
 AM_INIT_AUTOMAKE([foreign tar-ustar -Wall -Werror -Wno-portability])
