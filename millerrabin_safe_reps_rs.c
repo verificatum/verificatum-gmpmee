@@ -59,14 +59,18 @@ gmpmee_millerrabin_safe_reps_rs(gmp_randstate_t rstate,
        error. This is however quite difficult to do in a backwards
        compatible way. */
 
+#ifndef __clang__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstringop-overflow"
+#endif
     if (gmpmee_millerrabin_once(state->nstate, nbase) == 0)
       {
 	res = 0;
 	break;
       }
+#ifndef __clang__
 #pragma GCC diagnostic pop
+#endif
 
     /* Random base in [2,m-2] */
     mpz_urandomm(mbase, rstate, mn_minus_1);
@@ -75,14 +79,18 @@ gmpmee_millerrabin_safe_reps_rs(gmp_randstate_t rstate,
         mpz_set_ui(mbase, 2);
       }
 
+#ifndef __clang__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstringop-overflow"
+#endif
     if (gmpmee_millerrabin_once(state->mstate, mbase) == 0)
       {
 	res = 0;
 	break;
       }
+#ifndef __clang__
 #pragma GCC diagnostic pop
+#endif
   }
 
   mpz_clear(nn_minus_1);
