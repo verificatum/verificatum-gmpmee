@@ -34,7 +34,9 @@ ACLOCAL_AMFLAGS=-I m4
 GMP_CFLAGS := $(shell ./extract_GMP_CFLAGS)
 
 OPTIONAL_FLAGS=-O3
-#OPTIONAL_FLAGS=-fprofile-arcs -ftest-coverage
+
+# Use this instead to run coverage analysis.
+# OPTIONAL_FLAGS=-fprofile-arcs -ftest-coverage
 
 # We use pedantic flags, strip the optimization flag of GMP, and
 # insert our own level of optimization.
@@ -99,6 +101,7 @@ install-data-hook:
 check:
 	@./gmpmee 800
 
+# Uncomment OPTIONAL_FLAGS above to enable instrumentation.
 coverage: all
 	@./gmpmee 1000
 	@rm -rf coverage
